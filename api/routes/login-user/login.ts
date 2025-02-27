@@ -4,7 +4,7 @@ import type { FastifyInstance } from "fastify";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import argon2 from "argon2";
-import { createUserSession } from "@/lib/cookie/session";
+import { createUserSession } from "../../middleware/session";
 
 const prisma = new PrismaClient();
 
