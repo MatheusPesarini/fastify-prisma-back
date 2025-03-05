@@ -21,19 +21,18 @@ const fastify = Fastify({ logger: true });
 
 // Registre o plugin @fastify/cookie
 fastify.register(fastifyCookie, {
-  secret: process.env.COOKIE_SECRET, // Use uma chave secreta para assinar os cookies
+	secret: process.env.SESSION_SECRET, // Use uma chave secreta para assinar os cookies
 	hook: "onRequest", // Execute o plugin no gancho onRequest
-  parseOptions: {} // Opções de análise de cookies
+	parseOptions: {}, // Opções de análise de cookies
 });
 
 fastify.register(helmet);
 fastify.register(cors, {
-  origin: "http://localhost:3000",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"]
+	origin: "http://localhost:3000",
+	credentials: true,
+	methods: ["GET", "POST", "PUT", "DELETE"],
+	allowedHeaders: ["Content-Type", "Authorization"],
 });
-
 
 // fastify.register(getUserRoutes);
 fastify.register(loginUserRoutes);
