@@ -1,7 +1,7 @@
 import { SignJWT } from 'jose';
 
-const secretKey = process.env.SESSION_SECRET;
-const encodedKey = new TextEncoder().encode(secretKey);
+// const secretKey = process.env.SESSION_SECRET;
+const encodedKey = new TextEncoder().encode('my-secret');
 
 type SessionPayload = {
 	userId: string;

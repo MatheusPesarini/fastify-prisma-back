@@ -1,5 +1,3 @@
-'use server';
-
 import Fastify from 'fastify';
 import fastifyCookie from '@fastify/cookie';
 import cors from '@fastify/cors';
