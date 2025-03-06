@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import type { FastifyInstance } from "fastify";
-import { PrismaClient } from "@prisma/client";
-import { z } from "zod";
-import argon2 from "argon2";
+import type { FastifyInstance } from 'fastify';
+import { PrismaClient } from '@prisma/client';
+import { z } from 'zod';
+import argon2 from 'argon2';
 
 const prisma = new PrismaClient();
 
@@ -14,11 +14,11 @@ const createUserSchema = z.object({
 });
 
 export default async function createUserRoutes(fastify: FastifyInstance) {
-	fastify.post("/register", async (request, reply) => {
+	fastify.post('/register', async (request, reply) => {
 		const result = createUserSchema.safeParse(request.body);
 
 		if (!result.success) {
-			reply.status(400).send({ error: "Dados inválidos" });
+			reply.status(400).send({ error: 'Dados inválidos' });
 			return;
 		}
 
@@ -39,7 +39,7 @@ export default async function createUserRoutes(fastify: FastifyInstance) {
 			reply.send(user);
 		} catch (error) {
 			fastify.log.error(error);
-			reply.status(500).send({ error: "Erro ao criar usuário" });
+			reply.status(500).send({ error: 'Erro ao criar usuário' });
 		}
 	});
 }

@@ -1,39 +1,39 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
 	const user = await prisma.user.upsert({
 		where: {
 			// Chegando se o usuário já existe na hora de rodar o migrate para não criar um usuário duplicado
-			email: "test@test.com",
+			email: 'test@test.com',
 		},
 		update: {},
 		create: {
-			email: "test@test.com",
-			name: "Test User",
-			password: "password",
+			email: 'test@test.com',
+			name: 'Test User',
+			password: 'password',
 		},
-	})
+	});
 
 	const product = await prisma.product.upsert({
 		where: {
-			id: "1",
+			id: '1',
 		},
 		update: {},
 		create: {
-			name: "Test Product",
+			name: 'Test Product',
 			price: 100,
 			quantity: 10,
-			category: "Test Category",
+			category: 'Test Category',
 		},
-	})
-	console.log(user)
+	});
+	console.log(user);
 }
 main()
 	.then(() => prisma.$disconnect())
 	.catch(async (e) => {
-		console.error(e)
-		await prisma.$disconnect()
-		process.exit(1)
-	})
+		console.error(e);
+		await prisma.$disconnect();
+		process.exit(1);
+	});

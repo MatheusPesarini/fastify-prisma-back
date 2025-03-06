@@ -1,12 +1,12 @@
-"use server";
+'use server';
 
-import type { FastifyInstance } from "fastify";
-import { PrismaClient } from "@prisma/client";
+import type { FastifyInstance } from 'fastify';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export default async function updateProductRoutes(fastify: FastifyInstance) {
-	fastify.put("/updateProduct/:id", async (request, reply) => {
+	fastify.put('/updateProduct/:id', async (request, reply) => {
 		const { id } = request.params as { id: string };
 
 		const { name, price, quantity } = request.body as {
@@ -25,11 +25,11 @@ export default async function updateProductRoutes(fastify: FastifyInstance) {
 				},
 			});
 
-			console.log("Product updated: ", product);
+			console.log('Product updated: ', product);
 			reply.send(product);
 		} catch (error) {
 			fastify.log.error(error);
-			reply.status(500).send({ error: "Erro ao atualizar produto" });
+			reply.status(500).send({ error: 'Erro ao atualizar produto' });
 		}
 	});
 }
