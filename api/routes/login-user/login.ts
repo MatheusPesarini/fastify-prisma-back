@@ -48,12 +48,12 @@ export default async function loginUserRoutes(fastify: FastifyInstance) {
 				secure: false, // true apenas em produção
 				path: '/',
 				maxAge: 604800, // 7 dias em segundos
-				sameSite: 'lax',
+				sameSite: 'none',
 			});
 
 			console.log('Cookie definido com token:', sessionToken);
 
-			reply.send({ message: 'Usuário logado com sucesso' });
+			reply.send({ message: 'Login bem-sucedido', token: sessionToken });
 		} catch (error) {
 			fastify.log.error(error);
 			reply.status(500).send({ error: 'Erro ao fazer login' });

@@ -5,10 +5,9 @@ export default async function logoutRoutes(fastify: FastifyInstance) {
 		try {
 			reply.clearCookie('session', {
 				path: '/',
-				domain: 'localhost',
-				secure: true,
+				secure: false,
 				httpOnly: true,
-				sameSite: 'lax',
+				sameSite: 'none',
 			});
 
 			return { sucess: true, message: 'Usuário deslogado com sucesso' };
